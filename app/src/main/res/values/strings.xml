@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Covid19Tracker</string>
+    <string name="title">Covid-19 Global Cases</string>
+    <string name="total_confirmed">Total Confirmed</string>
+    <string name="total_deaths">Total Deaths</string>
+    <string name="total_recovered">Total Recovered</string>
+    <string name="msg_connection_error">Failed to connect to server!</string>
+    <string name="today_s_cases">Today\'s Cases</string>
+    <string name="today_s_deaths">Active</string>
+    <string name="critical">Critical</string>
+    <string name="current_time">Current Time</string>
+    <string name="noData">---</string>
+    <string name="affected_country">Affected Country</string>
+    <string name="search_country">Search Country</string>
+</resources>

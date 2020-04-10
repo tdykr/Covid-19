@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
+            app:cardCornerRadius="15dp"
+            app:contentPadding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/current_time"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/title"
+                    android:textSize="30dp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerInParent="true">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total_confirmed"
+                                android:textSize="12dp"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:id="@+id/tvTotalConfirmed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:text="@string/noData"
+                                android:textSize="24sp"
+                                android:textColor="@color/colorPositive" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total_deaths"
+                                android:textSize="12sp"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:id="@+id/tvTotalDeaths"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:text="@string/noData"
+                                android:textSize="24sp"
+                                android:textColor="@color/colorDeath"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total_recovered"
+                                android:textSize="12sp"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:id="@+id/tvTotalRecovered"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:text="@string/noData"
+                                android:textSize="24sp"
+                                android:textColor="@color/colorRecovered"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/today_s_deaths"
+                                android:textSize="12sp"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:id="@+id/tvActive"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:text="@string/noData"
+                                android:textSize="24sp"
+                                android:textColor="@color/colorWhite"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/today_s_cases"
+                                android:textSize="12sp"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:id="@+id/tvTodaysConfirmed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:text="@string/noData"
+                                android:textSize="24sp"
+                                android:textColor="@color/colorWhite"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/critical"
+                                android:textSize="12sp"
+                                android:layout_marginTop="10dp"/>
+
+                            <TextView
+                                android:id="@+id/tvAffecctedCountry"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:text="@string/noData"
+                                android:textSize="24sp"
+                                android:textColor="@color/colorWhite"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card1"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
+            app:cardCornerRadius="15dp"
+            app:contentPadding="5dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_search"
+                    android:hint="@string/search_country"/>
+
+                <TextView
+                    android:layout_below="@id/etSearch"
+                    android:id="@+id/txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/affected_country"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/load"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/countryList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/txt"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</ScrollView>

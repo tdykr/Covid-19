@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e6f2ff</color>
+    <color name="colorPrimaryDark">#80bfff</color>
+    <color name="colorAccent">#cce6ff</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorGray">#e0e0e0</color>
+    <color name="colorGray1">#8C9AA5 </color>
+    <color name="colorPositive">#ffbf80</color>
+    <color name="colorDeath">#ff1a1a</color>
+    <color name="colorRecovered">#80ff80</color>
+</resources>
