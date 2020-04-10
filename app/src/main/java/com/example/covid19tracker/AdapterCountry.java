@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,7 +53,8 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.ItemView
         String flag = data.get(position).get("FLAG");
 
         holder.flag.setImageBitmap(getBitmapFromURL(flag));
-        holder.country.setText(data.get(position).get("COUNTRY"));
+        final String countryName = data.get(position).get("COUNTRY");
+        holder.country.setText(countryName);
         holder.recovered.setText(data.get(position).get("RECOVERED"));
         holder.recoveredTv.setText("Recovered");
         holder.critical.setText(data.get(position).get("CRITICAL"));
@@ -63,6 +65,18 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.ItemView
         holder.activeTv.setText("Active");
         holder.death.setText(data.get(position).get("DEATHS"));
         holder.deathTv.setText("Death");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(countryName.equals("Indonesia")){
+                    Intent in = new Intent(context,CountryDetailActivity.class);
+                    context.startActivity(in);
+                }else{
+                    Toast.makeText(context, "Currently Country Detail Menu Only Works for Indonesia", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 

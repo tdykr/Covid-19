@@ -8,5 +8,5 @@ public class APIConfig {
         String url = "https://corona.lmao.ninja/countries/"+country;
         return url;
     }
-
+    public final static String URL_DETAIL_INDONESIA = "https://api.kawalcorona.com/indonesia/provinsi";
 }
