@@ -14,4 +14,7 @@
     <string name="search_country">Search Country</string>
     <string name="by_tedy_kurnia_ramdhani">By Tedy Kurnia Ramdhani</string>
     <string name="covid_19_indonesia_cases">Covid-19 Indonesia Cases</string>
+    <string name="search">Search</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

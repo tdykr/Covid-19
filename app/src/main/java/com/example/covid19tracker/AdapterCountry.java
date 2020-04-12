@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -50,9 +52,13 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.ItemView
     @Override
     public void onBindViewHolder(@NonNull AdapterCountry.ItemViewHolder holder, int position) {
 
-        String flag = data.get(position).get("FLAG");
-
-        holder.flag.setImageBitmap(getBitmapFromURL(flag));
+//        String flag = data.get(position).get("FLAG");
+//
+//        holder.flag.setImageBitmap(getBitmapFromURL(flag));
+        Glide.with(context)
+                .load(data.get(position).get("FLAG"))
+                .apply(new RequestOptions().override(240, 160))
+                .into(holder.flag);
         final String countryName = data.get(position).get("COUNTRY");
         holder.country.setText(countryName);
         holder.recovered.setText(data.get(position).get("RECOVERED"));

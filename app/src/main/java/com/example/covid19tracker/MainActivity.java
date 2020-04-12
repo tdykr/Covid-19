@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +35,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ArrayAdapter<String> adapter;
     private ProgressDialog loading;
     private ProgressBar loadCountry;
     private TextView tvTotalConfirmed;
@@ -48,15 +52,17 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<HashMap<String,String>> countrySearch = new ArrayList<>();
     private AdapterCountry adapterCountry;
     private RecyclerView countryListView;
+    private Spinner listCountrySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//
+//        StrictMode.setThreadPolicy(policy);
         loadSummary();
+//        searchCountry("Indonesia");
         loadCountry();
 
         loadCountry = findViewById(R.id.load);
@@ -75,14 +81,15 @@ public class MainActivity extends AppCompatActivity {
         Date currentTime = Calendar.getInstance().getTime();
 
         tvDate.setText(sdf.format(currentTime));
-        final EditText searchValueET = findViewById(R.id.etSearch);
+
         Button btnSearchCountry = findViewById(R.id.btnSearch);
+        listCountrySpinner = findViewById(R.id.countryListData);
 
         btnSearchCountry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String param = searchValueET.getText().toString();
+                String param = listCountrySpinner.getSelectedItem().toString();
                 if(param.equals("") || param.equals(null) || param.isEmpty()){
 
                     adapterCountry = new AdapterCountry(MainActivity.this,countryArrayList);
@@ -135,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
 
         RequestQueue mRequestQueue = Volley.newRequestQueue(MainActivity.this);
 
+        final List<String> countryDataList = new ArrayList<>();
+        countryDataList.add("Select Country");
+
         StringRequest mStringRequest = new StringRequest(Request.Method.GET, APIConfig.URL_LIST_COUNTRIES, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -162,17 +172,22 @@ public class MainActivity extends AppCompatActivity {
                         countryData.put("RECOVERED",recovered);
                         countryData.put("FLAG",flag);
 
+                        countryDataList.add(country);
                         countryArrayList.add(countryData);
                     }
 
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+
                 loadCountry.setVisibility(View.GONE);
                 adapterCountry = new AdapterCountry(MainActivity.this,countryArrayList);
                 countryListView.setHasFixedSize(true);
                 countryListView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                 countryListView.setAdapter(adapterCountry);
+
+                adapter = new ArrayAdapter<>(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, countryDataList);
+                listCountrySpinner.setAdapter(adapter);
 
                 Log.d("CountryList", countryArrayList.toString());
             }
