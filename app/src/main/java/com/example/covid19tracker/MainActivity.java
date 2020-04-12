@@ -3,6 +3,7 @@ package com.example.covid19tracker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
@@ -53,11 +54,13 @@ public class MainActivity extends AppCompatActivity {
     private AdapterCountry adapterCountry;
     private RecyclerView countryListView;
     private Spinner listCountrySpinner;
+    private List<String> countryDataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 //        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 //
 //        StrictMode.setThreadPolicy(policy);
@@ -77,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout data = findViewById(R.id.linear);
         countryListView = findViewById(R.id.countryList);
 
+        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadCountry();
+                loadSummary();
+                pullToRefresh.setRefreshing(false);
+                adapterCountry.notifyDataSetChanged();
+            }
+        });
+
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("E,dd MMM yyyy");
         Date currentTime = Calendar.getInstance().getTime();
 
@@ -90,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String param = listCountrySpinner.getSelectedItem().toString();
-                if(param.equals("") || param.equals(null) || param.isEmpty()){
+                if(param.equals("Select All") || param.equals(null) || param.isEmpty()){
 
                     adapterCountry = new AdapterCountry(MainActivity.this,countryArrayList);
                     countryListView.setHasFixedSize(true);
@@ -98,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     countryListView.setAdapter(adapterCountry);
                 }else{
                     searchCountry(param);
+                    countryDataList.remove(0);
                 }
             }
         });
@@ -142,8 +157,8 @@ public class MainActivity extends AppCompatActivity {
 
         RequestQueue mRequestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        final List<String> countryDataList = new ArrayList<>();
         countryDataList.add("Select Country");
+        countryDataList.add("Select All");
 
         StringRequest mStringRequest = new StringRequest(Request.Method.GET, APIConfig.URL_LIST_COUNTRIES, new Response.Listener<String>() {
             @Override
